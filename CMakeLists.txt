@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10.1)
 project(test_neon)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -o2 -ftree-vectorize")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -o3 -ftree-vectorize -mtune=cortex-a72")
 set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_MODULE_PATH 
     ${CMAKE_MODULE_PATH} 
@@ -17,4 +17,8 @@ set(SRC ${SRC}
 )
 
 include_directories( ${includeDirs} )
-add_executable (test_addition src/main_addition.cpp ${SRC})
+add_executable (test_add_u8 src/test_add_u8.cpp ${SRC})
+add_executable (test_add_u16 src/test_add_u16.cpp ${SRC})
+
+add_executable (test_muladd_u8 src/test_add_u8.cpp ${SRC})
+add_executable (test_muladd_u16 src/test_muladd_u16.cpp ${SRC})
